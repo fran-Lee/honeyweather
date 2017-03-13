@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,7 +17,7 @@ import com.honeyweather.app.util.HttpCallbackListener;
 import com.honeyweather.app.util.HttpUtil;
 import com.honeyweather.app.util.Utility;
 
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends Activity implements OnClickListener{
 
 	private LinearLayout weatherInfoLayout;
 
@@ -30,6 +32,12 @@ public class WeatherActivity extends Activity {
 	private TextView temp2Text;
 
 	private TextView currentDateText;
+	
+	
+	private Button switchCity;
+	private Button refreshWeather;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,14 @@ public class WeatherActivity extends Activity {
 			// 没有县级代号，即直辖市
 			showWeather();
 		}
+		
+		switchCity = (Button) findViewById(R.id.switch_city);
+		refreshWeather = (Button) findViewById(R.id.refresh_weather);
+		switchCity.setOnClickListener(this);
+		refreshWeather.setOnClickListener(this);
+		
+		
+		
 	}
 
 	private void showWeather() {
@@ -124,6 +140,12 @@ public class WeatherActivity extends Activity {
 			}
 
 		});
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
